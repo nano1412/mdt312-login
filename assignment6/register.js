@@ -1,6 +1,10 @@
 window.onload = pageLoad;
+
+let errorText;
+
 function pageLoad(){
 	var form = document.getElementById("myRegister");
+    errorText = document.getElementById("errormsg");
 	form.onsubmit = validateForm;
 }
 
@@ -20,13 +24,15 @@ function validateForm() {
     for(let i of Object.keys(user)){
         // alert(i + " " + user[i].value);
         if(!user[i].value){
-            alert(i + " is empty");
+            errorText.innerHTML = i + " is empty";
+            // alert(i + " is empty");
             return false;
         }
     }
 
     if(user.password.value != user.confirmpassword.value){
-        alert("password and retype password are not same");
+        errorText.innerHTML = "password and retype password are not same";
+        // alert("password and retype password are not same");
         return false
     }
     return true;
